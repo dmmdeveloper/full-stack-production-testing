@@ -5,7 +5,7 @@ dotenv.config({path :".env"});
 
 // Cloudianry Configuration
 cloudinary.config({
-cloud_name  : process.env?.TOKENsECRET,
+cloud_name  : process.env?.CLOUDnAME,
 api_key : process.env?.CLOUD_APIkEY,
 api_secret: process.env?.CLOUDaPIsERET
 });
