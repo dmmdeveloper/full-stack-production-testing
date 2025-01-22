@@ -5,7 +5,7 @@ import dotenv from "dotenv";
 
 dotenv.config({path:".env"})
 
-export const sendMail = (to, subject , text, html)=>{
+export const sendMail = async (to, subject , text, html)=>{
 try {
 
     const transporter =  nodemailer.createTransport({
@@ -24,7 +24,7 @@ try {
         html
     };
 
-    transporter.sendMail(mailOptions , (error,info) =>{
+  await transporter.sendMail(mailOptions , (error,info) =>{
 console.log("Email Sent To : " ,info.response);
     })
 
