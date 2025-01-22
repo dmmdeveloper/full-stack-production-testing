@@ -12,7 +12,7 @@ import chalk from "chalk";
 export const DBConnection = async ()=>{
     try {
         console.log(chalk.yellow("\t\t\t DataBase Connecting......"));
-        const db = await mongoose.connect(`${process.env.DB_URL}/${dbName}`);;; 
+        const db = await mongoose.connect(`${process.env.DBuRL}/${dbName}`);;; 
         console.log(chalk.bgGreen("** Data Base Connection Success Fully !!"));
         console.log("Host : " , db.connection.host);
         console.log("Name : " , db.connection.name);
