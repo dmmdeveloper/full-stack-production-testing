@@ -40,7 +40,11 @@ const requiredFields = ["name", "email", "password"];
 for(let field of requiredFields){
 
 if(!req.body[field]){
-    Response( res, `${field} is Required :)` ,null, 404 )
+    // Response( res, `${field} is Required :)` ,null, 404 ) X 
+    res
+    .status(404).json(
+        new APIREsponse(`${field} is Required :)` , {} , 404)
+    );
     throw new APIError(`${field} is Required :)` ,402 )
 }
 }
@@ -53,7 +57,11 @@ if(!req.body[field]){
 //     throw new APIError("Email Already Registered :))!" , 402);
 // }
 
-const avatar = req.files?.avatar[0]?.path 
+
+let avatar ;
+if(req.files?.avatar){
+ avatar = req.files?.avatar[0]?.path 
+}
 console.log(avatar);
 
 const avatarURL = await uploadOnCloudinary(avatar);

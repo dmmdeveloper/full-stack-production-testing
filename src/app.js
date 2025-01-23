@@ -8,7 +8,12 @@ app.use(express.urlencoded({limit:"2000kb" , extended : true}));
 app.use(express.json({limit:"50000kb"}));
 app.use(express.static("public"));
 app.use(cookieParser());
-app.use(cors());
+app.use(cors({
+    // origin:"http://localhost:5173",
+    origin:"https://fullstacktesting.vercel.app",
+    methods : ["POST","GET","DELETE","PUT"],
+    credentials : true
+}));
 
 
 // Default Route 
