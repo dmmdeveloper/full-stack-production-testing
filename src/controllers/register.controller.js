@@ -112,11 +112,20 @@ const options = {
         new APIREsponse("User Registered Success Fully !!" , RegisteredUser, 200)
     )    
 })
+const getUser = asyncHandler ( async (req , res) =>{    
+    console.log(req.url);
 
+    res
+    .status(200)
+    .json(
+        new APIREsponse("User Fetched Success Fully !!" , req.user , 201)
+    )
+
+    
+});
 
 // login the user
 // forget change the password
 // edit profile 
 
-
-export { Register}
+export { Register , getUser }
