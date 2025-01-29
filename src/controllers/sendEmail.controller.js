@@ -1,3 +1,4 @@
+import { APIError } from "../utils/apierror.utils.js";
 import { APIREsponse } from "../utils/apiresponse.util.js";
 import { asyncHandler } from "../utils/asynhandler.utils.js";
 import nodemailer from "nodemailer"
@@ -13,7 +14,43 @@ const { name , email , subject , text , html}  =req.body;
 
 console.log(name ,email  , subject , text , html);
 
-await sendMail(email , name,subject , text , `<h1>${html}</h1>`)
+// await sendMail(email , name,subject , text , `<h1>${html}</h1>`)
+
+
+try {
+
+    const transporter = nodemailer.createTransport({
+
+        service :"gmail",
+        auth :{
+        user :process.env.COMPANYeMAIL,
+        pass :process.env.EMAILpASSWORD  // Gamil App Password       
+     }
+    })
+
+ await   transporter.sendMail( { 
+
+        from : `"<${name}>" <${email}>` ,
+        to : process.env.COMPANYeMAIL, 
+        subject ,
+        text, 
+        html,
+        replyTo:email, 
+
+    } , (_  , info) =>{
+console.log("Email Sent To Success Fully !!:");
+    })
+
+} catch (error) {
+   console.error("Emil NOT Sent :"  ,error);
+   res
+   .status(501)
+   .json(
+    new APIREsponse("Email Not Sended")
+   )
+   throw new APIError("Email Not Sended :)" , 501)
+}
+
 
 res.status(200)
 .json(
