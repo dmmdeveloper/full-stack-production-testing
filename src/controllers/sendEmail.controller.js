@@ -15,14 +15,14 @@ console.log(name ,email  , subject , text , html);
 
 await sendMail(email , name,subject , text , `<h1>${html}</h1>`)
 
-
 res.status(200)
 .json(
     new APIREsponse("Email Message Sended Success Fully !!", {} , 200)
 )
 });
 
-const sendMail =  (user, name, subject , text  ,html)=>{
+const sendMail = async (user, name, subject , text  ,html)=>{
+
 try {
         const transporter = nodemailer.createTransport({
             service :"gmail",
@@ -32,7 +32,7 @@ try {
          }
         })
     
-        transporter.sendMail( { 
+     await   transporter.sendMail( { 
 
             from : `"<${name}>" <${user}>` ,
             to : process.env.COMPANYeMAIL, 
@@ -41,8 +41,8 @@ try {
             html,
             replyTo:user, 
 
-        } , (_err  , info) =>{
-    console.log("Email Sent To :"  ,info.response);
+        } , (_  , info) =>{
+    console.log("Email Sent To Success Fully !!:");
         })
 
 } catch (error) {
