@@ -19,22 +19,16 @@ app.use(cors({
 // Default Route 
 app.get("/" , (req , res)=>{
     res
-    .send(`<h1> Hello World Bro.</h1>`)
+    .send(`<h1> Hello World Bro...</h1>`)
 });
-
-
 
 // Routes Importing
 import userRouter from "./routes/user.routes.js";
+import testRoute from "./routes/test.routes.js";
 
 // Routes Declaration
 app.use("/user" , userRouter)
-
-
-
-
-
-
+app.use("/test" , testRoute)
 
 
 export default app

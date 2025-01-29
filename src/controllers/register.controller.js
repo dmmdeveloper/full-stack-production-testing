@@ -22,6 +22,7 @@ const generateToken = async (_id) =>{
 }
 
 const Register = asyncHandler( async (req,res) =>{    
+    
 
     console.log(req.url);
 
