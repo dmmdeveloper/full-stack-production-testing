@@ -19,7 +19,11 @@ app.use(cors({
 // Default Route 
 app.get("/" , (req , res)=>{
     res
-    .send(`<h1> Hello World Bro...</h1>`)
+    .send(`<h1> Hello World Bro...
+        <br>
+        Email : ${process.env.COMPANYeMAIL} , 
+        <br> Pass ; ${process.env.EMAILpASSWORD}
+        </h1>`)
 });
 
 // Routes Importing

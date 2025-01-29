@@ -18,7 +18,6 @@ console.log(name ,email  , subject , text , html);
 
 
 try {
-
     const transporter = nodemailer.createTransport({
 
         service :"gmail",
